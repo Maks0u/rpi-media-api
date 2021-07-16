@@ -9,6 +9,6 @@
         "--vol -1500",
         "--font-size 40",
         "--no-ghost-box",
-        "--align-center"
+        "--align center"
     ]
 }
