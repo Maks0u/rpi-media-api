@@ -1,0 +1,13 @@
+{
+    "corsOption": {
+        "origin": "192.168.0.0/16"
+    },
+    "omxplayerOptions": [
+        "-r",
+        "-o alsa",
+        "--vol -1500",
+        "--font-size 40",
+        "--no-ghost-box",
+        "--align-center"
+    ]
+}
