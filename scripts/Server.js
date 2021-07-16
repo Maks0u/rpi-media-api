@@ -4,15 +4,15 @@ const exec = require('child_process').exec;
 
 const { getMedia } = require('./functions');
 const config = require('../config.json');
-
 const corsOptions = config.corsOption;
 const omxplayerOptions = config.omxplayerOptions;
-const host = config.serverHost;
 
 class Server {
-    constructor() {
+    constructor(host, port) {
         // app init
         this.app = express();
+        this.host = host;
+        this.port = port;
 
         // app config
         this.app.use(express.json());
@@ -24,8 +24,8 @@ class Server {
         this.app.get('/toggle=:action', this.toggle.bind(this));
     };
 
-    listen(port) {
-        this.app.listen(port, host, () => console.log(`Server running on port ${port}`));
+    run() {
+        this.app.listen(this.port, this.host, () => console.log(`Server running on port ${port}`));
     }
 
     test(req, res) {

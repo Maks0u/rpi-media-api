@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 
 const config = require('../config.json');
-
 const corsOptions = config.corsOption;
-const host = config.serverHost;
 
 class Static {
-    constructor() {
+    constructor(host, port) {
         // app init
         this.app = express();
+        this.host = host;
+        this.port = port;
 
         // app config
         this.app.use(express.static(__dirname, ['html']));
@@ -19,8 +19,8 @@ class Static {
         this.app.get('/', this.homepage.bind(this));
     };
 
-    listen(port) {
-        this.app.listen(port, host, () => console.log(`Static running on port ${port}`));
+    run() {
+        this.app.listen(this.port, this.host, () => console.log(`Static running on port ${port}`));
     }
 
     homepage(req, res) {
