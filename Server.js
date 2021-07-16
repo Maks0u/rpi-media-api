@@ -6,7 +6,8 @@ const { getMedia } = require('./functions');
 const config = require('./config.json');
 
 const corsOptions = config.corsOption;
-const omxplayerOptions = config.omxplayerOptions
+const omxplayerOptions = config.omxplayerOptions;
+const host = config.host;
 
 class Server {
     constructor() {
@@ -23,7 +24,7 @@ class Server {
     };
 
     listen(port) {
-        this.app.listen(port, config.host, () => console.log(`Server running on port ${port}`));
+        this.app.listen(port, host, () => console.log(`Server running on port ${port}`));
     }
 
     test(req, res) {
