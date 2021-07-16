@@ -85,10 +85,13 @@ class Server {
                 key = 'Right';
                 break;
             case 'volumedown':
-                key = 'Down';
+                key = 'minus';
                 break
             case 'volumeup':
-                key = 'Up';
+                key = 'plus';
+                break;
+            case 'stop':
+                key = 'q';
                 break;
 
             default:
