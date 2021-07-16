@@ -6,7 +6,7 @@ const { Static } = require('./views/Static');
 const server = new Server();
 const serverPort = 3000;
 const static = new Static();
-const staticPort = 80;
+const staticPort = 8080;
 
 // run
 server.listen(serverPort);

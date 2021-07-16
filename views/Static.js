@@ -4,7 +4,7 @@ const cors = require('cors');
 const config = require('../config.json');
 
 const corsOptions = config.corsOption;
-const host = config.host;
+const host = config.serverHost;
 
 class Static {
     constructor() {

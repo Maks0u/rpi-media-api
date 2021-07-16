@@ -7,7 +7,7 @@ const config = require('../config.json');
 
 const corsOptions = config.corsOption;
 const omxplayerOptions = config.omxplayerOptions;
-const host = config.host;
+const host = config.serverHost;
 
 class Server {
     constructor() {
@@ -29,14 +29,18 @@ class Server {
     }
 
     test(req, res) {
+
         console.log(`TEST`);
+
         res.status(200)
             .json('Hello world!')
             .end();
     };
 
     async open(req, res) {
+
         console.log('OPEN');
+
         const url = req.params.url;
         const media = await this.play(url);
         if (media) {
@@ -47,6 +51,7 @@ class Server {
     }
 
     async play(url) {
+
         if (url) {
             try {
                 const media = await getMedia(url);
@@ -64,7 +69,10 @@ class Server {
     }
 
     toggle(req, res) {
+
         const action = req.params.action;
+        console.log(`toggle ${action}`);
+
         let key = null;
         switch (action) {
             case 'playpause':
@@ -86,6 +94,7 @@ class Server {
             default:
                 break;
         }
+
         if (key) {
             exec(`xdotool key ${key}`);
             res.status(200).end();

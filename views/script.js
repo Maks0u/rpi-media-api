@@ -1,9 +1,10 @@
-const config = require('../config.json');
-const baseURI = `http://${config.serverHost}:${config.serverPort}`;
+// const config = require('../config.json');
+// const baseURI = `http://${config.serverHost}:${config.serverPort}`;
+// http://localhost:3000
 
 function playurl() {
     const url = document.getElementById('url').value;
-    fetch(`${baseURI}/open=${encodeURIComponent(url)}`)
+    fetch(`http://localhost:3000/open=${encodeURIComponent(url)}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
@@ -12,7 +13,7 @@ function playurl() {
 }
 
 function toggle(action) {
-    fetch(`${baseURI}/toggle=${action}`)
+    fetch(`http://localhost:3000/toggle=${action}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
