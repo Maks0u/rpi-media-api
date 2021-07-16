@@ -23,7 +23,7 @@ class Server {
     };
 
     listen(port) {
-        this.app.listen(port, 'localhost', () => console.log(`Server running on port ${port}`));
+        this.app.listen(port, config.host, () => console.log(`Server running on port ${port}`));
     }
 
     test(req, res) {
