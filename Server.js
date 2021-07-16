@@ -45,7 +45,7 @@ class Server {
                 .json(media)
                 .end();
 
-            exec(`omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
+            exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
 
         } else {
             res.status(500).end();
