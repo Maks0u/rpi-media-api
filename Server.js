@@ -45,7 +45,7 @@ class Server {
                 .json(media)
                 .end();
 
-            exec(`omxplayer ${media.url} ${omxplayerOptions.join(' ')}`, (error, stdout, stderr) => console.error(error));
+            exec(`omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
 
         } else {
             res.status(500).end();
