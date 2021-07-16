@@ -20,7 +20,7 @@ class Static {
     };
 
     run() {
-        this.app.listen(this.port, this.host, () => console.log(`Static running on port ${this.port}`));
+        this.app.listen(this.port, this.host, () => console.log(`Static running on http://${this.host}:${this.port}`));
     }
 
     homepage(req, res) {

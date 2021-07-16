@@ -1,7 +1,7 @@
 {
-    "serverHost": "localhost",
+    "serverHost": "192.168.43.79",
     "serverPort": 3000,
-    "staticHost": "localhost",
+    "staticHost": "192.168.43.79",
     "staticPort": 8080,
     "corsOption": {
         "origin": "*"
