@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>RPi Media API</title>
+</head>
+
+<body>
+    <h2>RPi Media API</h2>
+    <input id="url" type="text" placeholder="url" />
+    <button id="run" onclick="playurl()">Open</button>
+    <br>
+    <button id="left" onclick="toggle('backward')"><<</button>
+    <button id="space" onclick="toggle('playpause')">Play/Pause</button>
+    <button id="right" onclick="toggle('forward')">>></button>
+    <button id="down" onclick="toggle('volumedown')">-</button>
+    <button id="up" onclick="toggle('volumeup')">+</button>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

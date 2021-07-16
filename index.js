@@ -1,9 +1,13 @@
 // imports
-const { Server } = require('./Server');
+const { Server } = require('./scripts/Server');
+const { Static } = require('./views/Static');
 
 // properties
-const serv = new Server();
-const port = 3000;
+const server = new Server();
+const serverPort = 3000;
+const static = new Static();
+const staticPort = 80;
 
 // run
-serv.listen(port);
+server.listen(serverPort);
+static.listen(staticPort);

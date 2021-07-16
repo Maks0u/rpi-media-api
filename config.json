@@ -1,7 +1,8 @@
 {
-    "host": "raspberrypi",
+    "serverHost": "localhost",
+    "serverPort": 3000,
     "corsOption": {
-        "origin": "192.168.0.0/16"
+        "origin": "*"
     },
     "omxplayerOptions": [
         "-r",
