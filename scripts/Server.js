@@ -72,8 +72,9 @@ class Server {
                         exec(`youtube-dl -g ${decodeURI(url)}`, (error, stdout, stderr) => {
                             if (error) return null;
                             media = { title: '', quality: '', url: stdout };
-                            return media
-                        })
+                        });
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                        return media;
                     } catch (error) {
                         console.error(error);
                         return null;
