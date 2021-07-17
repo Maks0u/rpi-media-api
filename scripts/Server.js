@@ -72,7 +72,7 @@ class Server {
                 case 'twitch':
                     try {
                         const decodedURI = decodeURI(url);
-                        exec(`lxterminal --geometry=140x34 -e youtube-dl -g ${decodedURI} | omxplayer ${omxplayerOptions.join(' ')} -`, (error, stdout, stderr) => console.error(error));
+                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} \`youtube-dl -g ${decodedURI}\``, (error, stdout, stderr) => console.error(error));
                         // await timer(15000);
                         return true;
 
