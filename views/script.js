@@ -4,7 +4,7 @@
 
 function play(type) {
     const url = document.getElementById('url').value;
-    fetch(`http://192.168.43.79:3000/${type}=${encodeURIComponent(url)}`)
+    fetch(`http://192.168.43.79:3000/media/${type}=${encodeURIComponent(url)}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
@@ -13,7 +13,7 @@ function play(type) {
 }
 
 function toggle(action) {
-    fetch(`http://192.168.43.79:3000/toggle=${action}`)
+    fetch(`http://192.168.43.79:3000/action/toggle=${action}`)
         .then((response) => {
             console.log(response);
         }, (error) => {

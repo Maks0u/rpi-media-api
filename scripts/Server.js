@@ -20,8 +20,8 @@ class Server {
 
         // requests
         this.app.get('/', this.test.bind(this));
-        this.app.get('/:type=:url', this.play.bind(this));
-        this.app.get('/toggle=:action', this.toggle.bind(this));
+        this.app.get('/media/:type=:url', this.play.bind(this));
+        this.app.get('/action/toggle=:action', this.toggle.bind(this));
     };
 
     run() {
