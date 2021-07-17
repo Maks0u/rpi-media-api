@@ -69,11 +69,13 @@ class Server {
                 case 'twitch':
                     try {
                         let media = { title: '', quality: '', url: '' };
-                        exec(`youtube-dl -g ${decodeURI(url)}`, (error, stdout, stderr) => {
+                        const decodedURI = decodeURI(url);
+                        exec(`youtube-dl -g ${decodedURI}`, (error, stdout, stderr) => {
                             if (error) return null;
                             media = { title: '', quality: '', url: stdout };
                         });
-                        await new Promise(resolve => setTimeout(resolve, 500));
+                        const timer = ms => new Promise( res => setTimeout(res, ms));
+                        await timer(500);
                         return media;
                     } catch (error) {
                         console.error(error);
