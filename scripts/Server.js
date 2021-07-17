@@ -7,6 +7,8 @@ const config = require('../config.json');
 const corsOptions = config.corsOption;
 const omxplayerOptions = config.omxplayerOptions;
 
+// const timer = ms => new Promise(res => setTimeout(res, ms));
+
 class Server {
     constructor(host, port) {
         // app init
@@ -45,7 +47,7 @@ class Server {
         const url = req.params.url;
         const media = await this.media(url, type);
         if (media) {
-            this.player(media.url);
+            // this.player(media.url);
             res.status(200).json();
         } else {
             res.status(500).end();
@@ -59,6 +61,7 @@ class Server {
                 case 'yt':
                     try {
                         const media = await getMedia(url);
+                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
                         return media;
 
                     } catch (error) {
@@ -68,15 +71,11 @@ class Server {
 
                 case 'twitch':
                     try {
-                        let media = { title: '', quality: '', url: '' };
                         const decodedURI = decodeURI(url);
-                        exec(`youtube-dl -g ${decodedURI}`, (error, stdout, stderr) => {
-                            if (error) return null;
-                            media = { title: '', quality: '', url: stdout };
-                        });
-                        const timer = ms => new Promise( res => setTimeout(res, ms));
-                        await timer(500);
-                        return media;
+                        exec(`lxterminal --geometry=140x34 -e youtube-dl -g ${decodedURI} | omxplayer ${omxplayerOptions.join(' ')} -`, (error, stdout, stderr) => console.error(error));
+                        // await timer(15000);
+                        return true;
+
                     } catch (error) {
                         console.error(error);
                         return null;
@@ -91,9 +90,9 @@ class Server {
         }
     }
 
-    player(streamURL) {
-        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${streamURL}"`, (error, stdout, stderr) => console.error(error));
-    }
+    // player(streamURL) {
+    //     exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${streamURL}"`, (error, stdout, stderr) => console.error(error));
+    // }
 
     toggle(req, res) {
 
