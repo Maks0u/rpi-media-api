@@ -20,7 +20,7 @@ class Server {
 
         // requests
         this.app.get('/', this.test.bind(this));
-        this.app.get('/open=:url', this.open.bind(this));
+        this.app.get('/:type=:url', this.play.bind(this));
         this.app.get('/toggle=:action', this.toggle.bind(this));
     };
 
@@ -37,35 +37,59 @@ class Server {
             .end();
     };
 
-    async open(req, res) {
+    async play(req, res) {
 
         console.log('OPEN');
 
+        const type = req.params.type;
         const url = req.params.url;
-        const media = await this.play(url);
+        const media = await this.media(url, type);
         if (media) {
+            this.player(media.url);
             res.status(200).json();
         } else {
             res.status(500).end();
         }
     }
 
-    async play(url) {
+    async media(url, type) {
 
-        if (url) {
-            try {
-                const media = await getMedia(url);
-                exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
-                return media;
+        if (url && type) {
+            switch (type) {
+                case 'yt':
+                    try {
+                        const media = await getMedia(url);
+                        return media;
 
-            } catch (error) {
-                console.error(error);
-                return null;
+                    } catch (error) {
+                        console.error(error);
+                        return null;
+                    }
+
+                case 'twitch':
+                    try {
+                        let media = { title: '', quality: '', url: '' };
+                        exec(`youtube-dl -g ${url}`, (error, stdout, stderr) => {
+                            if (error) return null;
+                            media = { title: '', quality: '', url: stdout };
+                            return media
+                        })
+                    } catch (error) {
+                        console.error(error);
+                        return null;
+                    }
+
+                default:
+                    return null;
             }
 
         } else {
             return null;
         }
+    }
+
+    player(streamURL) {
+        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${streamURL}"`, (error, stdout, stderr) => console.error(error));
     }
 
     toggle(req, res) {

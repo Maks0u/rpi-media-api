@@ -2,9 +2,9 @@
 // const baseURI = `http://${config.serverHost}:${config.serverPort}`;
 // http://localhost:3000
 
-function playurl() {
+function play(type) {
     const url = document.getElementById('url').value;
-    fetch(`http://192.168.43.79:3000/open=${encodeURIComponent(url)}`)
+    fetch(`http://192.168.43.79:3000/${type}=${encodeURIComponent(url)}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
