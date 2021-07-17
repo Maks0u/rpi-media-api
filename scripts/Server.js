@@ -69,7 +69,7 @@ class Server {
                 case 'twitch':
                     try {
                         let media = { title: '', quality: '', url: '' };
-                        exec(`youtube-dl -g ${url}`, (error, stdout, stderr) => {
+                        exec(`youtube-dl -g ${decodeURI(url)}`, (error, stdout, stderr) => {
                             if (error) return null;
                             media = { title: '', quality: '', url: stdout };
                             return media
