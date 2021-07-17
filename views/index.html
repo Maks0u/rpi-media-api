@@ -5,21 +5,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>RPi Media API</title>
 </head>
 
 <body>
-    <h2>RPi Media API</h2>
-    <input id="url" type="text" placeholder="url" />
-    <button id="yt" onclick="play('yt')">YouTube</button>
-    <button id="twitch" onclick="play('twitch')">Twitch</button>
-    <br>
-    <button id="left" onclick="toggle('backward')"><<</button>
-    <button id="space" onclick="toggle('playpause')">Play/Pause</button>
-    <button id="right" onclick="toggle('forward')">>></button>
-    <button id="down" onclick="toggle('volumedown')">-</button>
-    <button id="up" onclick="toggle('volumeup')">+</button>
-    <button id="stop" onclick="toggle('stop')">Stop</button>
+    <div class="w3-row">
+        <div class="w3-col m12">
+            <h2>RPi Media API</h2>
+        </div>
+    </div>
+    <div class="w3-row line1">
+        <div class="w3-col m8">
+            <input id="url" type="text" placeholder="url" class="w3-input" />
+        </div>
+        <div class="w3-col m2">
+            <button id="yt" onclick="play('yt')" class="w3-btn w3-red">YouTube</button>
+        </div>
+        <div class="w3-col m2">
+            <button id="twitch" onclick="play('twitch')" class="w3-btn w3-purple">Twitch</button>
+        </div>
+    </div>
+    <div class="w3-row line2">
+        <div class="w3-col m2">
+            <button id="left" onclick="toggle('backward')" class="w3-btn w3-blue-grey">Left</button>
+        </div>
+        <div class="w3-col m4">
+            <button id="space" onclick="toggle('playpause')" class="w3-btn w3-indigo">Play / Pause</button>
+        </div>
+        <div class="w3-col m2">
+            <button id="right" onclick="toggle('forward')" class="w3-btn w3-blue-grey">Right</button>
+        </div>
+        <div class="w3-col m1">
+            <button id="down" onclick="toggle('volumedown')" class="w3-btn w3-teal">-</button>
+        </div>
+        <div class="w3-col m1">
+            <button id="up" onclick="toggle('volumeup')" class="w3-btn w3-teal">+</button>
+        </div>
+        <div class="w3-col m2">
+            <button id="stop" onclick="toggle('stop')" class="w3-btn w3-red">Stop</button>
+        </div>
+    </div>
 
     <script src="./script.js"></script>
 </body>

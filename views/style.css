@@ -1,0 +1,22 @@
+* {
+    text-align: center;
+}
+
+h2 {
+    padding-top: 4vh;
+    padding-bottom: 8vh;
+}
+
+input {
+    width: 100%;
+    height: 80px;
+}
+
+button {
+    width: 100%;
+    height: 160px;
+}
+
+.line1 button {
+    height: 80px;
+}
