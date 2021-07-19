@@ -42,14 +42,15 @@ class Server {
 
     async play(req, res) {
 
-        console.log('OPEN');
-
         const type = req.params.type;
         const url = req.params.url;
         const audioDevice = req.params.audioDevice;
+
+        console.log(`PLAY type=${type} audio=${audioDevice} url=${url}`);
+
         const media = await this.media(url, type, audioDevice);
+
         if (media) {
-            // this.player(media.url);
             res.status(200).json();
         } else {
             res.status(500).end();
@@ -98,10 +99,6 @@ class Server {
             return null;
         }
     }
-
-    // player(streamURL) {
-    //     exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${streamURL}"`, (error, stdout, stderr) => console.error(error));
-    // }
 
     toggle(req, res) {
 
