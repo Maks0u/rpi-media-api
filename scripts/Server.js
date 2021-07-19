@@ -138,7 +138,7 @@ class Server {
         }
     }
 
-    shutdown() {
+    shutdown(req, res) {
         const option = req.params.option;
         console.log(`shutdown ${option}`);
         switch (option) {
