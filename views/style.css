@@ -2,11 +2,6 @@
     text-align: center;
 }
 
-h2 {
-    padding-top: 4vh;
-    padding-bottom: 6vh;
-}
-
 input {
     width: 100%;
     height: 80px;
@@ -16,22 +11,110 @@ button {
     width: 100%;
 }
 
+.headers {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.title {
+    margin-top: 30px;
+}
+
 .line1 button {
     height: 80px;
 }
 
+.line1:after {
+    padding-bottom: 20px;
+}
+
 .line2 button {
-    height: 160px;
+    height: 120px;
 }
 
 .line3 button {
-    height: 120px;
+    height: 160px;
 }
 
 .line4 button {
     height: 80px;
 }
 
+.line5 button {
+    height: 60px;
+}
+
+.line5:before {
+    height: 40px;
+}
+
 .w3-col {
     padding: 4px;
+}
+
+.switch-button {
+    border-radius: 30px;
+    overflow: hidden;
+    width: 240px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding-right: 120px;
+    position: relative;
+    margin: auto;
+}
+
+.switch-button:before {
+    content: "HDMI";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.switch-button-checkbox {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+}
+
+.switch-button-checkbox:checked+.switch-button-label:before {
+    transform: translateX(120px);
+    transition: transform 300ms;
+}
+
+.switch-button-checkbox+.switch-button-label {
+    position: relative;
+    padding: 15px 0;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+}
+
+.switch-button-checkbox+.switch-button-label:before {
+    content: "";
+    background: #009688;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+    transform: translateX(0);
+    transition: transform 300ms;
+}
+
+.switch-button-checkbox+.switch-button-label .switch-button-label-span {
+    position: relative;
 }

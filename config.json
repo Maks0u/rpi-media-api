@@ -1,14 +1,13 @@
 {
-    "serverHost": "192.168.43.79",
+    "serverHost": "localhost",
     "serverPort": 3000,
-    "staticHost": "192.168.43.79",
+    "staticHost": "localhost",
     "staticPort": 8080,
     "corsOption": {
         "origin": "*"
     },
     "omxplayerOptions": [
         "-r",
-        "-o alsa",
         "--vol -1500",
         "--font-size 40",
         "--no-ghost-box",

@@ -10,9 +10,17 @@
 </head>
 
 <body>
-    <div class="w3-row">
-        <div class="w3-col m12">
+    <div class="w3-row headers">
+        <div class="w3-col s6 title">
             <h2>RPi Media API</h2>
+        </div>
+        <div class="w3-col s6">
+            <p>Audio output:</p>
+            <div class="switch-button">
+                <input id="audio-ouput" class="switch-button-checkbox" type="checkbox" onclick="switchAudioDevice()"></input>
+                <label class="switch-button-label" for=""><span class="switch-button-label-span">Analog</span></label>
+                <input id="audio-device" type="checkbox" value="0" hidden />
+            </div>
         </div>
     </div>
     <div class="w3-row line1">
@@ -27,6 +35,14 @@
         </div>
     </div>
     <div class="w3-row line2">
+        <div class="w3-col s6">
+            <button id="down" onclick="toggle('volumedown')" class="w3-btn w3-teal">-</button>
+        </div>
+        <div class="w3-col s6">
+            <button id="up" onclick="toggle('volumeup')" class="w3-btn w3-teal">+</button>
+        </div>
+    </div>
+    <div class="w3-row line3">
         <div class="w3-col s3">
             <button id="left" onclick="toggle('backward')" class="w3-btn w3-blue-grey">Left</button>
         </div>
@@ -37,22 +53,17 @@
             <button id="right" onclick="toggle('forward')" class="w3-btn w3-blue-grey">Right</button>
         </div>
     </div>
-    <div class="w3-row line3">
-        <div class="w3-col s6">
-            <button id="down" onclick="toggle('volumedown')" class="w3-btn w3-teal">-</button>
-        </div>
-        <div class="w3-col s6">
-            <button id="up" onclick="toggle('volumeup')" class="w3-btn w3-teal">+</button>
-        </div>
-    </div>
     <div class="w3-row line4">
         <div class="w3-col s12">
             <button id="stop" onclick="toggle('stop')" class="w3-btn w3-red">Stop</button>
         </div>
     </div>
     <div class="w3-row line5">
-        <div>
-            <button id="shutdown" onclick="shutdown()" class="w3-btn w3-deep-orange">Shutdown Pi</button>
+        <div class="w3-col s6">
+            <button id="shutdown" onclick="shutdown('off')" class="w3-btn w3-black">Shutdown Pi</button>
+        </div>
+        <div class="w3-col s6">
+            <button id="reboot" onclick="shutdown('reboot')" class="w3-btn w3-black">Reboot Pi</button>
         </div>
     </div>
 

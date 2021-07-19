@@ -22,9 +22,9 @@ class Server {
 
         // requests
         this.app.get('/', this.test.bind(this));
-        this.app.get('/media/:type=:url', this.play.bind(this));
+        this.app.get('/media/:type=:url/:audioDevice', this.play.bind(this));
         this.app.get('/action/toggle=:action', this.toggle.bind(this));
-        this.app.get('/shutdown', this.shutdown.bind(this));
+        this.app.get('/shutdown=:option', this.shutdown.bind(this));
     };
 
     run() {
@@ -46,7 +46,8 @@ class Server {
 
         const type = req.params.type;
         const url = req.params.url;
-        const media = await this.media(url, type);
+        const audioDevice = req.params.audioDevice;
+        const media = await this.media(url, type, audioDevice);
         if (media) {
             // this.player(media.url);
             res.status(200).json();
@@ -55,14 +56,21 @@ class Server {
         }
     }
 
-    async media(url, type) {
+    async media(url, type, audioDevice) {
+
+        let audioOutput = 'alsa';
+        if (audioDevice == 1) {
+            audioOutput = 'hdmi';
+        } else if (audioDevice == 0) {
+            audioOutput = 'local';
+        }
 
         if (url && type) {
             switch (type) {
                 case 'yt':
                     try {
                         const media = await getMedia(url);
-                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} "${media.url}"`, (error, stdout, stderr) => console.error(error));
+                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} -o ${audioOutput} "${media.url}"`, (error, stdout, stderr) => console.error(error));
                         return media;
 
                     } catch (error) {
@@ -73,7 +81,7 @@ class Server {
                 case 'twitch':
                     try {
                         const decodedURI = decodeURI(url);
-                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} \`youtube-dl -g ${decodedURI}\``, (error, stdout, stderr) => console.error(error));
+                        exec(`lxterminal --geometry=140x34 -e omxplayer ${omxplayerOptions.join(' ')} -o ${audioOutput} \`youtube-dl -g ${decodedURI}\``, (error, stdout, stderr) => console.error(error));
                         // await timer(15000);
                         return true;
 
@@ -134,7 +142,19 @@ class Server {
     }
 
     shutdown() {
-        exec(`sudo shutdown 0`);
+        const option = req.params.option;
+        console.log(`shutdown ${option}`);
+        switch (option) {
+            case 'off':
+                exec(`sudo shutdown 0`);
+                break;
+            case 'reboot':
+                exec(`sudo shutdown -r 0`);
+                break;
+
+            default:
+                break;
+        }
     }
 
 };
