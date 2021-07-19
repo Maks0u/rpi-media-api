@@ -20,3 +20,7 @@ function toggle(action) {
             console.error(error);
         });
 }
+
+function shutdown() {
+    fetch(`http://192.168.43.79:3000/shutdown`);
+}

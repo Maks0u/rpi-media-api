@@ -24,6 +24,7 @@ class Server {
         this.app.get('/', this.test.bind(this));
         this.app.get('/media/:type=:url', this.play.bind(this));
         this.app.get('/action/toggle=:action', this.toggle.bind(this));
+        this.app.get('/shutdown', this.shutdown.bind(this));
     };
 
     run() {
@@ -130,6 +131,10 @@ class Server {
         } else {
             res.status(500).end();
         }
+    }
+
+    shutdown() {
+        exec(`sudo shutdown 0`);
     }
 
 };
