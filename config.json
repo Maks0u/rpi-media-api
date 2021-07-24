@@ -1,7 +1,7 @@
 {
-    "serverHost": "raspberrypi",
+    "serverHost": "192.168.1.38",
     "serverPort": 3000,
-    "staticHost": "raspberrypi",
+    "staticHost": "192.168.1.38",
     "staticPort": 8080,
     "corsOption": {
         "origin": "*"

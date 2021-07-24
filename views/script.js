@@ -5,7 +5,7 @@
 function play(type) {
     const url = document.getElementById('url').value;
     const audioDevice = document.getElementById('audio-device').value;
-    fetch(`http://raspberrypi:3000/media/${type}=${encodeURIComponent(url)}/${audioDevice}`)
+    fetch(`http://192.168.1.38:3000/media/${type}=${encodeURIComponent(url)}/${audioDevice}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
@@ -14,7 +14,7 @@ function play(type) {
 }
 
 function toggle(action) {
-    fetch(`http://raspberrypi:3000/action/toggle=${action}`)
+    fetch(`http://192.168.1.38:3000/action/toggle=${action}`)
         .then((response) => {
             console.log(response);
         }, (error) => {
@@ -23,7 +23,7 @@ function toggle(action) {
 }
 
 function shutdown(option) {
-    fetch(`http://raspberrypi:3000/shutdown=${option}`);
+    fetch(`http://192.168.1.38:3000/shutdown=${option}`);
 }
 
 function switchAudioDevice() {
